@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		02F5E11A266B57D3003AC899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F5E118266B57D3003AC899 /* Main.storyboard */; };
 		02F5E11C266B57D6003AC899 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F5E11B266B57D6003AC899 /* Assets.xcassets */; };
 		02F5E11F266B57D6003AC899 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F5E11D266B57D6003AC899 /* LaunchScreen.storyboard */; };
+		02F5E137266B61C0003AC899 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F5E136266B61C0003AC899 /* ViewModel.swift */; };
+		72E222F24DF330B6BD00A597 /* Pods_Kanna_practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0B06909DB9E693CC93B63 /* Pods_Kanna_practice.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		02F5E11B266B57D6003AC899 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F5E11E266B57D6003AC899 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02F5E120266B57D6003AC899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02F5E136266B61C0003AC899 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		5AF0B06909DB9E693CC93B63 /* Pods_Kanna_practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kanna_practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C8629A37DC5D4F9C72897A3 /* Pods-Kanna_practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanna_practice.release.xcconfig"; path = "Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice.release.xcconfig"; sourceTree = "<group>"; };
+		FED4834322564B706415908A /* Pods-Kanna_practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanna_practice.debug.xcconfig"; path = "Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72E222F24DF330B6BD00A597 /* Pods_Kanna_practice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				02F5E111266B57D3003AC899 /* Kanna_practice */,
 				02F5E110266B57D3003AC899 /* Products */,
+				999FD24BF1F0DA37C37DEB9B /* Pods */,
+				6026FB6DAF478472ADBBECBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +65,7 @@
 		02F5E111266B57D3003AC899 /* Kanna_practice */ = {
 			isa = PBXGroup;
 			children = (
+				02F5E135266B61B6003AC899 /* ViewModel */,
 				02F5E112266B57D3003AC899 /* AppDelegate.swift */,
 				02F5E114266B57D3003AC899 /* SceneDelegate.swift */,
 				02F5E116266B57D3003AC899 /* ViewController.swift */,
@@ -67,6 +77,31 @@
 			path = Kanna_practice;
 			sourceTree = "<group>";
 		};
+		02F5E135266B61B6003AC899 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				02F5E136266B61C0003AC899 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6026FB6DAF478472ADBBECBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5AF0B06909DB9E693CC93B63 /* Pods_Kanna_practice.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		999FD24BF1F0DA37C37DEB9B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FED4834322564B706415908A /* Pods-Kanna_practice.debug.xcconfig */,
+				5C8629A37DC5D4F9C72897A3 /* Pods-Kanna_practice.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +109,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02F5E123266B57D6003AC899 /* Build configuration list for PBXNativeTarget "Kanna_practice" */;
 			buildPhases = (
+				DAF9011EC548FF59B1F16A1E /* [CP] Check Pods Manifest.lock */,
 				02F5E10B266B57D3003AC899 /* Sources */,
 				02F5E10C266B57D3003AC899 /* Frameworks */,
 				02F5E10D266B57D3003AC899 /* Resources */,
+				7442CE768A9CA11D05ED207E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +169,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7442CE768A9CA11D05ED207E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAF9011EC548FF59B1F16A1E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kanna_practice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		02F5E10B266B57D3003AC899 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -139,6 +218,7 @@
 			files = (
 				02F5E117266B57D3003AC899 /* ViewController.swift in Sources */,
 				02F5E113266B57D3003AC899 /* AppDelegate.swift in Sources */,
+				02F5E137266B61C0003AC899 /* ViewModel.swift in Sources */,
 				02F5E115266B57D3003AC899 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +363,7 @@
 		};
 		02F5E124266B57D6003AC899 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FED4834322564B706415908A /* Pods-Kanna_practice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +383,7 @@
 		};
 		02F5E125266B57D6003AC899 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C8629A37DC5D4F9C72897A3 /* Pods-Kanna_practice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
