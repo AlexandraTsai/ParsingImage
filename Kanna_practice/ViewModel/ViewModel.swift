@@ -16,14 +16,20 @@ protocol ViewModelInput {
 }
 
 protocol ViewModelOutput {
-    var images: BehaviorRelay<[UIImage]> { get }
+    var posts: BehaviorRelay<[UIImage]> { get }
+    var authorProfile: BehaviorRelay<UIImage?> { get }
+    var authorName: BehaviorRelay<String?> { get }
+    var authorEmail: BehaviorRelay<String?> { get }
 }
 
 typealias ViewModelPrototype = ViewModelInput & ViewModelOutput
 
 class ViewModel: ViewModelPrototype {
     // MARK: ViewModelOutput
-    let images = BehaviorRelay<[UIImage]>(value: [])
+    let posts = BehaviorRelay<[UIImage]>(value: [])
+    let authorProfile = BehaviorRelay<UIImage?>(value: nil)
+    let authorName = BehaviorRelay<String?>(value: nil)
+    let authorEmail = BehaviorRelay<String?>(value: nil)
 
     // MARK: ViewModelInput
     func fetchData() {
@@ -36,13 +42,31 @@ class ViewModel: ViewModelPrototype {
     func parseHtml(_ html: String) {
         guard let doc = try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) else { return }
 
-        let URLs = doc.xpath("//img").compactMap { node in
-            node["src"]
+        // Profile
+        if let profilURL = doc.xpath("//img[@class='acme-profile']").first?["src"] {
+            fetchProfile(with: profilURL)
         }
-        fetchImages(with: URLs)
+
+        authorName.accept(doc.xpath("//h1[@class='acme-heading -text']").first?.text)
+        authorEmail.accept(doc.xpath("//p[@class='acme-subheading']").first?.text)
+        // Post
+        let URLs = doc.xpath("//a[@class='acme-lightbox-activate']")
+            .flatMap { node in
+                node.xpath("//img").compactMap { node in
+                    node["src"]
+                }
+            }
+        fetchPosts(with: URLs)
     }
 
-    func fetchImages(with urls: [String]) {
+    func fetchProfile(with url: String) {
+        guard let url = URL(string: url),
+              let data = try? Data(contentsOf: url),
+              let img = UIImage(data: data) else { return }
+        authorProfile.accept(img)
+    }
+
+    func fetchPosts(with urls: [String]) {
         var images = [UIImage]()
         urls.forEach {
             guard let url = URL(string: $0),
@@ -50,6 +74,6 @@ class ViewModel: ViewModelPrototype {
                   let img = UIImage(data: data) else { return }
             images.append(img)
         }
-        self.images.accept(images)
+        posts.accept(images)
     }
 }
