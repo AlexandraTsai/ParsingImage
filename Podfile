@@ -11,5 +11,5 @@ target 'Kanna_practice' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
-
+  pod 'SkeletonView'
 end

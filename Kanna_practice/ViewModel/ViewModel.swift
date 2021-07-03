@@ -38,7 +38,9 @@ class ViewModel: ViewModelPrototype {
             self.parseHtml(html)
         }
     }
+}
 
+private extension ViewModel {
     func parseHtml(_ html: String) {
         guard let doc = try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) else { return }
 

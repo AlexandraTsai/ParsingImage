@@ -5,6 +5,7 @@
 //  Created by AlexandraTsai on 2021/6/5.
 //
 
+import SkeletonView
 import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
@@ -27,9 +28,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
 
 private extension ImageCollectionViewCell {
     func setup() {
-        addSubview(imageView)
+        contentView.addSubview(imageView)
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        imageView.isSkeletonable = true
     }
 }
