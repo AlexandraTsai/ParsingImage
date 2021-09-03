@@ -5,7 +5,6 @@
 //  Created by AlexandraTsai on 2021/6/5.
 //
 
-import Alamofire
 import Foundation
 import Kanna
 import RxCocoa
@@ -16,27 +15,24 @@ protocol ViewModelInput {
 }
 
 protocol ViewModelOutput {
-    var posts: BehaviorRelay<[UIImage]> { get }
-    var authorProfile: BehaviorRelay<UIImage?> { get }
-    var authorName: BehaviorRelay<String?> { get }
-    var authorEmail: BehaviorRelay<String?> { get }
+    var post: BehaviorRelay<Post?> { get }
 }
 
 typealias ViewModelPrototype = ViewModelInput & ViewModelOutput
 
 class ViewModel: ViewModelPrototype {
     // MARK: ViewModelOutput
-    let posts = BehaviorRelay<[UIImage]>(value: [])
-    let authorProfile = BehaviorRelay<UIImage?>(value: nil)
-    let authorName = BehaviorRelay<String?>(value: nil)
-    let authorEmail = BehaviorRelay<String?>(value: nil)
+    let post = BehaviorRelay<Post?>(value: nil)
 
     // MARK: ViewModelInput
     func fetchData() {
-        AF.request("https://theslimlim.tumblr.com").responseString { response in
-            guard let html = response.value else { return }
-            self.parseHtml(html)
-        }
+        Parser.fetchHtmlData(from: "https://theslimlim.tumblr.com")
+            .done { html in
+                self.parseHtml(html)
+            }
+            .catch { error in
+                print(error)
+            }
     }
 }
 
@@ -45,12 +41,7 @@ private extension ViewModel {
         guard let doc = try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) else { return }
 
         // Profile
-        if let profilURL = doc.xpath("//img[@class='acme-profile']").first?["src"] {
-            fetchProfile(with: profilURL)
-        }
-
-        authorName.accept(doc.xpath("//h1[@class='acme-heading -text']").first?.text)
-        authorEmail.accept(doc.xpath("//p[@class='acme-subheading']").first?.text)
+        let profilURL = doc.xpath("//img[@class='acme-profile']").first?["src"]
         // Post
         let URLs = doc.xpath("//a[@class='acme-lightbox-activate']")
             .flatMap { node in
@@ -58,24 +49,18 @@ private extension ViewModel {
                     node["src"]
                 }
             }
-        fetchPosts(with: URLs)
-    }
 
-    func fetchProfile(with url: String) {
-        guard let url = URL(string: url),
-              let data = try? Data(contentsOf: url),
-              let img = UIImage(data: data) else { return }
-        authorProfile.accept(img)
+        let post = Post(posts: ImageHelper.fetchImages(with: URLs),
+                        authorProfile: profilURL == nil ? nil : ImageHelper.fetchImage(with: profilURL!),
+                        authorName: doc.xpath("//h1[@class='acme-heading -text']").first?.text ?? "",
+                        authorEmail: doc.xpath("//p[@class='acme-subheading']").first?.text ?? "")
+        self.post.accept(post)
     }
+}
 
-    func fetchPosts(with urls: [String]) {
-        var images = [UIImage]()
-        urls.forEach {
-            guard let url = URL(string: $0),
-                  let data = try? Data(contentsOf: url),
-                  let img = UIImage(data: data) else { return }
-            images.append(img)
-        }
-        posts.accept(images)
-    }
+struct Post {
+    let posts: [UIImage]
+    var authorProfile: UIImage?
+    let authorName: String
+    let authorEmail: String
 }

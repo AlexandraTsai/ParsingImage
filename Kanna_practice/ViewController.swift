@@ -54,9 +54,9 @@ extension ViewController: SkeletonCollectionViewDataSource {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension ViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.posts.value.count
+        viewModel.post.value?.posts.count ?? 0
     }
 
     func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
@@ -71,9 +71,8 @@ extension ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.nameOfClass, for: indexPath) as? ImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-
-        guard !viewModel.posts.value.isEmpty else { return cell }
-        cell.config(image: viewModel.posts.value[indexPath.row])
+        guard let posts = viewModel.post.value?.posts else { return cell }
+        cell.config(image: posts[indexPath.row])
         return cell
     }
 }
@@ -150,30 +149,19 @@ private extension ViewController {
 // MARK: Binding
 private extension ViewController {
     func bindViewModel() {
-        viewModel.posts
+        viewModel.post
             .subscribe { [weak self] _ in
                 guard let self = self else { return }
                 self.collectionView.stopSkeletonAnimation()
-                self.collectionView.reloadData()
                 self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.3))
             }.disposed(by: disposeBag)
 
-        viewModel.authorProfile
-            .bind(to: profileImage.rx.image)
-            .disposed(by: disposeBag)
-
-        viewModel.authorName.bind(to: authorName.rx.text).disposed(by: disposeBag)
-        viewModel.authorEmail.bind(to: authorEmail.rx.text).disposed(by: disposeBag)
-    }
-}
-
-extension NSObject {
-    /// name of class
-    class var nameOfClass: String {
-        return NSStringFromClass(self).components(separatedBy: ".").last!
-    }
-    /// name of class
-    var nameOfClass: String {
-        return NSStringFromClass(type(of: self)).components(separatedBy: ".").last!
+        viewModel.post
+            .subscribe(onNext: { [weak self] post in
+                guard let self = self else { return }
+                self.profileImage.image = post?.authorProfile
+                self.authorName.text = post?.authorName
+                self.authorEmail.text = post?.authorEmail
+            }).disposed(by: disposeBag)
     }
 }

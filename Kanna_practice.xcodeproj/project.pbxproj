@@ -16,6 +16,9 @@
 		02F5E137266B61C0003AC899 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F5E136266B61C0003AC899 /* ViewModel.swift */; };
 		02F5E13B266B79D3003AC899 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F5E13A266B79D3003AC899 /* ImageCollectionViewCell.swift */; };
 		72E222F24DF330B6BD00A597 /* Pods_Kanna_practice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0B06909DB9E693CC93B63 /* Pods_Kanna_practice.framework */; };
+		A81A9C2126E47D2000F182B5 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A9C1F26E47D2000F182B5 /* Parser.swift */; };
+		A81A9C2226E47D2000F182B5 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A9C2026E47D2000F182B5 /* ImageHelper.swift */; };
+		A81A9C2526E47D3700F182B5 /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A9C2426E47D3700F182B5 /* NSObject+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		02F5E13A266B79D3003AC899 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		5AF0B06909DB9E693CC93B63 /* Pods_Kanna_practice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kanna_practice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C8629A37DC5D4F9C72897A3 /* Pods-Kanna_practice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanna_practice.release.xcconfig"; path = "Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice.release.xcconfig"; sourceTree = "<group>"; };
+		A81A9C1F26E47D2000F182B5 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		A81A9C2026E47D2000F182B5 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		A81A9C2426E47D3700F182B5 /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		FED4834322564B706415908A /* Pods-Kanna_practice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kanna_practice.debug.xcconfig"; path = "Target Support Files/Pods-Kanna_practice/Pods-Kanna_practice.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +73,8 @@
 		02F5E111266B57D3003AC899 /* Kanna_practice */ = {
 			isa = PBXGroup;
 			children = (
+				A81A9C2326E47D2A00F182B5 /* Extension */,
+				A81A9C1E26E47D0C00F182B5 /* Manager */,
 				02F5E139266B79BC003AC899 /* View */,
 				02F5E135266B61B6003AC899 /* ViewModel */,
 				02F5E112266B57D3003AC899 /* AppDelegate.swift */,
@@ -111,6 +119,23 @@
 				5C8629A37DC5D4F9C72897A3 /* Pods-Kanna_practice.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A81A9C1E26E47D0C00F182B5 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A81A9C2026E47D2000F182B5 /* ImageHelper.swift */,
+				A81A9C1F26E47D2000F182B5 /* Parser.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		A81A9C2326E47D2A00F182B5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A81A9C2426E47D3700F182B5 /* NSObject+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +254,12 @@
 			files = (
 				02F5E117266B57D3003AC899 /* ViewController.swift in Sources */,
 				02F5E13B266B79D3003AC899 /* ImageCollectionViewCell.swift in Sources */,
+				A81A9C2126E47D2000F182B5 /* Parser.swift in Sources */,
+				A81A9C2526E47D3700F182B5 /* NSObject+Extension.swift in Sources */,
 				02F5E113266B57D3003AC899 /* AppDelegate.swift in Sources */,
 				02F5E137266B61C0003AC899 /* ViewModel.swift in Sources */,
 				02F5E115266B57D3003AC899 /* SceneDelegate.swift in Sources */,
+				A81A9C2226E47D2000F182B5 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
